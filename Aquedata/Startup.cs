@@ -1,4 +1,5 @@
-﻿using Hangfire;
+﻿using Aquedata.Validation;
+using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace Aquedata
                     }));
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = ServiceName, Version = "v1"}); });
+
+            services.AddSingleton<IRequestValidator, RequestValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
