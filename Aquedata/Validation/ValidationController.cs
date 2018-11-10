@@ -1,4 +1,5 @@
 ﻿using Aquedata.Model;
+using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aquedata.Validation
@@ -15,16 +16,19 @@ namespace Aquedata.Validation
         }
 
         [HttpPost]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(200, Type = typeof(int))]
+        [ProducesResponseType(400, Type = typeof(string))]
         public ActionResult ValidateData([FromBody] ValidationRequest request)
         {
-            if (!_validator.Validate(request))
+            var requestValidation = _validator.Validate(request);
+            if (!requestValidation.IsValid)
             {
-                return BadRequest();
+                return BadRequest(requestValidation.InvalidReason);
             }
 
-            return Ok();
+            string jobId = BackgroundJob.Enqueue(() => new ValidationJob().Execute(request));
+
+            return Ok(jobId);
         }
     }
 }

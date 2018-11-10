@@ -4,6 +4,6 @@ namespace Aquedata.Validation
 {
     public interface IRequestValidator
     {
-        bool Validate(ValidationRequest value);
+        RequestValidationResult Validate(ValidationRequest request);
     }
 }
