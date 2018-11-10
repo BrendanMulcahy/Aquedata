@@ -11,6 +11,8 @@ namespace Aquedata
 {
     public class Startup
     {
+        private const string ServiceName = "Aquedata";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,13 +28,11 @@ namespace Aquedata
                 x.UseSqlServerStorage(@"Server=.; Database=Hangfire; Integrated Security=SSPI;",
                     new SqlServerStorageOptions
                     {
+                        SchemaName = ServiceName,
                         PrepareSchemaIfNecessary = true
                     }));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Aquedata", Version = "v1" });
-            });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = ServiceName, Version = "v1"}); });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -54,10 +54,7 @@ namespace Aquedata
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", ServiceName); });
         }
     }
 }
