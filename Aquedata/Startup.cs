@@ -36,6 +36,7 @@ namespace Aquedata
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = ServiceName, Version = "v1"}); });
 
             services.AddSingleton<IRequestValidator, RequestValidator>();
+            services.AddSingleton<IValidationJobFactory, ValidationJobFactory>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

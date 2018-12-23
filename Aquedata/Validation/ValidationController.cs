@@ -9,10 +9,12 @@ namespace Aquedata.Validation
     public class ValidationController : ControllerBase
     {
         private readonly IRequestValidator _validator;
+        private readonly IValidationJobFactory _jobFactory;
 
-        public ValidationController(IRequestValidator validator)
+        public ValidationController(IRequestValidator validator, IValidationJobFactory jobFactory)
         {
             _validator = validator;
+            _jobFactory = jobFactory;
         }
 
         [HttpPost]
@@ -26,7 +28,8 @@ namespace Aquedata.Validation
                 return BadRequest(requestValidation.InvalidReason);
             }
 
-            string jobId = BackgroundJob.Enqueue(() => new ValidationJob().Execute(request));
+            var job = _jobFactory.Create(request);
+            string jobId = BackgroundJob.Enqueue(() => job.Execute(request));
 
             return Ok(jobId);
         }

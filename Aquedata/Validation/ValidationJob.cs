@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Aquedata.Model;
 
 namespace Aquedata.Validation
 {
     public class ValidationJob
     {
-        public void Execute(ValidationRequest request)
+        public async Task Execute(ValidationRequest request)
         {
-            Console.WriteLine("Test");
+            throw new NotImplementedException();
         }
     }
 }
