@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks.Dataflow;
 
-namespace Aquedata.Dataflow
+namespace Aquedata.DataflowCreation
 {
     public interface IDataflowBuilder
     {

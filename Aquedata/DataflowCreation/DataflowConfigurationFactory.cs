@@ -1,4 +1,4 @@
-﻿namespace Aquedata.Dataflow
+﻿namespace Aquedata.DataflowCreation
 {
     public class DataflowConfigurationFactory : IDataflowConfigurationFactory
     {
