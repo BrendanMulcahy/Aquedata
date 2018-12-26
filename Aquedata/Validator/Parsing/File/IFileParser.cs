@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aquedata.Parsing.File
+namespace Aquedata.Validator.Parsing.File
 {
     public interface IFileParser
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using Aquedata.DataflowCreation;
 using Aquedata.Model;
+using Aquedata.Validator.DataflowCreation;
 
-namespace Aquedata.Validation
+namespace Aquedata.Validator.Controller
 {
     public class ValidationJob
     {

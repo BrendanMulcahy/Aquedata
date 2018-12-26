@@ -1,6 +1,6 @@
-﻿using Aquedata.Parsing.File;
+﻿using Aquedata.Validator.Parsing.File;
 
-namespace Aquedata.Parsing.Record
+namespace Aquedata.Validator.Parsing.Record
 {
     public interface IRecordParser
     {

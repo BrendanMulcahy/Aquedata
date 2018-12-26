@@ -1,6 +1,6 @@
 ﻿using Aquedata.Model;
 
-namespace Aquedata.Validation
+namespace Aquedata.Validator.Controller
 {
     public interface IValidationJobFactory
     {

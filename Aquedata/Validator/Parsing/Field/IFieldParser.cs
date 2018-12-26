@@ -1,4 +1,4 @@
-﻿namespace Aquedata.Parsing.Field
+﻿namespace Aquedata.Validator.Parsing.Field
 {
     public interface IFieldParser<out T>
     {

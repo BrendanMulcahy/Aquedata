@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aquedata.Parsing.Record
+namespace Aquedata.Validator.Parsing.Record
 {
     public class ParsedRecord
     {

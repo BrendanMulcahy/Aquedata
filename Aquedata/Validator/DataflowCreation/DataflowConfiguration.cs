@@ -1,4 +1,4 @@
-﻿namespace Aquedata.DataflowCreation
+﻿namespace Aquedata.Validator.DataflowCreation
 {
     public class DataflowConfiguration
     {

@@ -2,7 +2,7 @@
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Aquedata.Validation
+namespace Aquedata.Validator.Controller
 {
     [Route("api/[controller]")]
     [ApiController]

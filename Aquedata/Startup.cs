@@ -1,4 +1,4 @@
-﻿using Aquedata.Validation;
+﻿using Aquedata.Validator.Controller;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;

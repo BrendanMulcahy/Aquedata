@@ -1,7 +1,7 @@
-﻿using Aquedata.DataflowCreation;
-using Aquedata.Model;
+﻿using Aquedata.Model;
+using Aquedata.Validator.DataflowCreation;
 
-namespace Aquedata.Validation
+namespace Aquedata.Validator.Controller
 {
     public class ValidationJobFactory : IValidationJobFactory
     {

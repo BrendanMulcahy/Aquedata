@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aquedata.Validation
+namespace Aquedata.Validator.Controller
 {
     public class RequestValidationResult
     {
