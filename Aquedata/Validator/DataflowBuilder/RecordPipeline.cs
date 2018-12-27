@@ -7,12 +7,12 @@ using Aquedata.Validator.Validation;
 
 namespace Aquedata.Validator.DataflowBuilder
 {
+    // todo finish ctor
     public class RecordPipeline
     {
         public Func<UnparsedRecord, bool> RoutingPredicate { get; }
 
-        // todo maybe not gonna be Validity<ParsedRecord>
-        public IPropagatorBlock<string, Validity<ParsedRecord>> Pipeline { get; }
+        public IPropagatorBlock<UnparsedRecord, Validity<ParsedRecord>> Pipeline { get; }
 
         public ISink<ParsedRecord> ValidRecordSink { get; }
     }
