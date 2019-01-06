@@ -1,4 +1,4 @@
-﻿using Aquedata.Validator.Parsing.File;
+﻿using Aquedata.Validator.Parsing.Files;
 using Aquedata.Validator.Validation;
 
 namespace Aquedata.Validator.DataflowBuilder

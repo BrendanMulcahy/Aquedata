@@ -37,6 +37,8 @@ namespace Aquedata
 
             services.AddSingleton<IRequestValidator, RequestValidator>();
             services.AddSingleton<IValidationJobFactory, ValidationJobFactory>();
+
+            services.AddSingleton(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

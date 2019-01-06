@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using Aquedata.Extensions;
-using Aquedata.Validator.Parsing.File;
+using Aquedata.Validator.Parsing.Files;
 using Aquedata.Validator.Parsing.Record;
 using Aquedata.Validator.Validation;
 

@@ -4,7 +4,7 @@ namespace Aquedata.Validator.Parsing.Record
 {
     public class ParsedRecord
     {
-        public ParsedRecord(int id, Dictionary<string, string> content)
+        public ParsedRecord(int id, Dictionary<string, object> content)
         {
             Id = id;
             Content = content;
@@ -16,9 +16,9 @@ namespace Aquedata.Validator.Parsing.Record
         public int Id { get; }
 
         /// <summary>
-        ///     The actual content of the record split into unparsed fields, where the keys are the field names and the values are
-        ///     the field's unparsed content.
+        ///     The actual content of the record split into fields, where the keys are the field names and the values are
+        ///     the field's content.
         /// </summary>
-        public Dictionary<string, string> Content { get; }
+        public Dictionary<string, object> Content { get; }
     }
 }
