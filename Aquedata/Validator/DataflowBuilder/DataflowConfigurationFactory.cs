@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks.Dataflow;
 using Aquedata.Validator.Parsing.Files;
 using Aquedata.Validator.Parsing.Record;
@@ -27,12 +28,16 @@ namespace Aquedata.Validator.DataflowBuilder
                     new RecordPipeline(
                         rec => true,
                         new TransformBlock<UnparsedRecord, Validity<ParsedRecord>>(
-                            r => new Validity<ParsedRecord>(new ParsedRecord(r.Id,
-                                new Dictionary<string, object>
-                                {
-                                    {"WidgetName", "Foo"},
-                                    {"Price", 1.23}
-                                }))), // todo real record pipeline
+                            r =>
+                            {
+                                var split = r.Content.Split(",");
+                                return new Validity<ParsedRecord>(new ParsedRecord(r.Id,
+                                    new Dictionary<string, object>
+                                    {
+                                        {"WidgetName", split.First()},
+                                        {"Price", double.Parse(split.Last())}
+                                    }));
+                            }), // todo real record pipeline
                         new ParsedRecordSink(_connectionString, "ValidRecords", 1000))
                 },
                 new SqlBulkCopySink<InvalidRecord>(_connectionString, "dbo.InvalidMessages", 1000));
