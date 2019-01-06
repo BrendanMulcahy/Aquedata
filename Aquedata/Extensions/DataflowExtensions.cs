@@ -31,16 +31,16 @@ namespace Aquedata.Extensions
             return new TargetBlock<T>(target, other.Completion);
         }
 
-        public static void CompleteWhenAllOrAnyFaulted(this IDataflowBlock block, List<Task> completions)
+        public static async Task CompleteWhenAllOrAnyFaulted(this IDataflowBlock block, List<Task> completions)
         {
-            if (!completions.Any())
+            if (completions.Count == 0)
             {
                 block.Complete();
             }
 
-            Task<Task> task = Task.WhenAny(completions);
+            Task task = await Task.WhenAny(completions);
 
-            task.ContinueWith(t =>
+            await task.ContinueWith(async t =>
             {
                 if (t.IsFaulted)
                 {
@@ -48,8 +48,8 @@ namespace Aquedata.Extensions
                 }
                 else
                 {
-                    var remainingTasks = completions.Where(c => c != t).ToList();
-                    block.CompleteWhenAllOrAnyFaulted(remainingTasks);
+                    var remainingTasks = completions.Where(c => c.Id != t.Id).ToList();
+                    await block.CompleteWhenAllOrAnyFaulted(remainingTasks);
                 }
             });
         }

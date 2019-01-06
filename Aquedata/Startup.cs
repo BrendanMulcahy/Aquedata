@@ -1,4 +1,5 @@
 ﻿using Aquedata.Validator.Controller;
+using Aquedata.Validator.DataflowBuilder;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,8 @@ namespace Aquedata
 
             services.AddSingleton<IRequestValidator, RequestValidator>();
             services.AddSingleton<IValidationJobFactory, ValidationJobFactory>();
+            services.AddSingleton<IDataflowConfigurationFactory, DataflowConfigurationFactory>();
+            services.AddSingleton<IDataflowBuilder, DataflowBuilder>();
 
             services.AddSingleton(Configuration);
         }

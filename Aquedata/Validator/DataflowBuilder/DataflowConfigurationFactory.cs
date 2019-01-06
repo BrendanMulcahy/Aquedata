@@ -4,7 +4,6 @@ using Aquedata.Validator.Parsing.Files;
 using Aquedata.Validator.Parsing.Record;
 using Aquedata.Validator.Sinks;
 using Aquedata.Validator.Validation;
-using Microsoft.Extensions.Configuration;
 
 namespace Aquedata.Validator.DataflowBuilder
 {
@@ -12,9 +11,9 @@ namespace Aquedata.Validator.DataflowBuilder
     {
         private readonly string _connectionString;
 
-        public DataflowConfigurationFactory(IConfiguration configuration)
+        public DataflowConfigurationFactory()
         {
-            _connectionString = configuration.GetConnectionString("Aquedata");
+            _connectionString = @"Server=.; Database=Aquedata; Integrated Security=SSPI;";
         }
 
         public DataflowBuilderConfiguration GetConfiguration(string format)

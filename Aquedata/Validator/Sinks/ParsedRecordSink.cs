@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Dynamic;
 using System.Linq;
 using Aquedata.Extensions;
 using Aquedata.Validator.Parsing.Record;
@@ -24,7 +22,13 @@ namespace Aquedata.Validator.Sinks
 
         public void Persist(ParsedRecord[] item)
         {
-            DataTable dataTable = item.Select(ToExpandoObject).AsDataTable();
+            // this is for demo short-cutting only
+            DataTable dataTable = item.Select(i => new TableSchema
+            {
+                Id = i.Id,
+                WidgetName = i.Content["WidgetName"],
+                Price = i.Content["Price"]
+            }).AsDataTable();
 
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -49,18 +53,11 @@ namespace Aquedata.Validator.Sinks
             }
         }
 
-        private ExpandoObject ToExpandoObject(ParsedRecord record)
+        private class TableSchema
         {
-            var expandoObject = new ExpandoObject();
-            var collection = (ICollection<KeyValuePair<string, object>>)expandoObject;
-            collection.Add(new KeyValuePair<string, object>("Id", record.Id));
-
-            foreach (var kvp in record.Content)
-            {
-                collection.Add(kvp);
-            }
-
-            return expandoObject;
+            public int Id { get; set; }
+            public object WidgetName { get; set; }
+            public object Price { get; set; }
         }
     }
 }
